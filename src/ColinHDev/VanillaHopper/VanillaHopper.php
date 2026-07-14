@@ -24,6 +24,7 @@ use pocketmine\block\RuntimeBlockStateRegistry;
 use pocketmine\block\tile\TileFactory;
 use pocketmine\block\VanillaBlocks;
 use pocketmine\crafting\CraftingManagerFromDataHelper;
+use pocketmine\data\bedrock\BedrockDataFiles;
 use pocketmine\data\bedrock\item\ItemDeserializer;
 use pocketmine\data\bedrock\item\ItemSerializer;
 use pocketmine\data\bedrock\item\ItemTypeNames;
@@ -40,7 +41,6 @@ use pocketmine\utils\SingletonTrait;
 use pocketmine\world\format\io\GlobalItemDataHandlers;
 use pocketmine\world\World;
 use ReflectionClass;
-use Symfony\Component\Filesystem\Path;
 use function mb_strtoupper;
 
 class VanillaHopper extends PluginBase {
@@ -138,7 +138,7 @@ class VanillaHopper extends PluginBase {
          * use the new hopper item instead.
          */
         (function() : void {
-            $this->craftingManager = CraftingManagerFromDataHelper::make(Path::join(\pocketmine\BEDROCK_DATA_PATH, "recipes"));
+            $this->craftingManager = CraftingManagerFromDataHelper::make(BedrockDataFiles::RECIPES_JSON);
         })->call(Server::getInstance());
 
         /*GlobalBlockStateHandlers::getDeserializer()->map(
